@@ -1,0 +1,23 @@
+---
+- name: provision stack
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: launch RDS cloudformation 
+    cloudformation:
+      stack_name: up-rds-test
+      state: present
+      region: eu-west-1
+      disable_rollback: true
+      template: cloudformation/rds.yaml
+      template_parameters:
+        EnvironmentName: test
+        VPC: vpc-36639c52
+        SecurityGroup: coreos-up-2847d04e
+        DBClass: db.t2.small
+        DBUser: SemanticUser
+        DBPassword: 
+  - name: show stack outputs
+    debug: msg="My stack outputs are {{stack.stack_outputs}}"
