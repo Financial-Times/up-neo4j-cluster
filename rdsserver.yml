@@ -14,8 +14,8 @@
       template: cloudformation/rds.yaml
       template_parameters:
         EnvironmentName: test
-        VPC: sg-28bc5a51
-        SecurityGroup: coreos-up-2847d04e
+        VPC: vpc-36639c52
+        SecurityGroup: sg-28bc5a51
         DBName: SemanticTransformerTest
         DBClass: db.t2.small
         DBUser: SemanticUser
