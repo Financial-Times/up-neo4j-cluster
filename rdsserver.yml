@@ -7,7 +7,7 @@
   tasks:
   - name: launch RDS cloudformation 
     cloudformation:
-      stack_name: up-rds-test
+      stack_name: up-rds-test-cr
       state: present
       region: eu-west-1
       disable_rollback: true
@@ -16,6 +16,7 @@
         EnvironmentName: test
         VPC: vpc-36639c52
         SecurityGroup: coreos-up-2847d04e
+        DBName: SemanticTransformerTest
         DBClass: db.t2.small
         DBUser: SemanticUser
         DBPassword: 

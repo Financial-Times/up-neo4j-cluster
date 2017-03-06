@@ -16,6 +16,14 @@ Parameters:
         Description: Select the Security Group to allow access to RDS instance
         Type: AWS::EC2::SecurityGroup::Id
 
+    DBName:
+        Description: The database name
+        Type: String
+        MinLength: 1
+        MaxLength: 64
+        AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+        ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+
     DBClass:
         Description: Enter the DB Instance Classes
         Type: String
@@ -78,7 +86,7 @@ Resources:
         Type: AWS::RDS::DBInstance
         Properties:
             DBName: !Ref DBName
-            DBInstanceClass: !Ref DBInstanceClass
+            DBInstanceClass: !Ref DBClass
             Engine: postgres
             EngineVersion: 9.5
             MasterUsername: !Ref DBUser
@@ -98,4 +106,4 @@ Outputs:
 
     DBHostAndPort: 
         Description: A reference to the DB host name
-        Value: !Join ['', !GetAtt [DB, Endpoint.Address], ':', [!GetAtt [DB, Endpoint.Port], '/', !Ref DBName]
+        Value: !Join ['', [!GetAtt [DB, Endpoint.Address], ':', !GetAtt [DB, Endpoint.Port], '/', !Ref DBName]]
