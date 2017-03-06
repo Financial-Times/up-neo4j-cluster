@@ -14,11 +14,11 @@
       template: cloudformation/rds.yaml
       template_parameters:
         EnvironmentName: test
-        VPC: vpc-36639c52
+        VPC: sg-28bc5a51
         SecurityGroup: coreos-up-2847d04e
         DBName: SemanticTransformerTest
         DBClass: db.t2.small
         DBUser: SemanticUser
-        DBPassword: 
+        DBPassword: 5up3r53cur3p455w0rd
   - name: show stack outputs
     debug: msg="My stack outputs are {{stack.stack_outputs}}"

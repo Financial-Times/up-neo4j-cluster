@@ -76,6 +76,7 @@ Resources:
         Type: AWS::EC2::SecurityGroup
         Properties:
             GroupDescription: Open database for access
+            VpcId: !Ref VPC
             SecurityGroupIngress:
               - IpProtocol: tcp
                 FromPort: 5432
@@ -92,11 +93,11 @@ Resources:
             MasterUsername: !Ref DBUser
             MasterUserPassword: !Ref DBPassword
             MultiAZ: false
-            DeletionPolicy: Snapshot
             StorageType: gp2
             AllocatedStorage: !Ref DBAllocatedStorage
             VPCSecurityGroups:
               - !Ref DBSecurityGroup
+        DeletionPolicy: Snapshot
 
 Outputs:
 
